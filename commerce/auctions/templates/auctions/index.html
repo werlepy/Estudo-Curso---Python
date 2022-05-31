@@ -1,0 +1,62 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+        <h2>Active Listings</h2>
+
+        <div> your new product was add:
+                <p>{{ a }}</p>
+                <p>{{ b }}</p>
+                <p>{{ c }}</p>
+                <p>{{ d }}</p>
+                <p>{{ f }}</p>
+                <p>{{ l }}</p>
+
+
+        </div>
+
+        <div class="row">
+
+        {% for Produto in Produto %}
+
+                <div class="card col-sm-4" style="width: 20px;"> 
+                        <div class="card-header">
+                        <h4> {{ Produto.titulo }} </h4>
+                        <img class="card-img-top" src="{{ Produto.img }}" alt="Sem Imagem" style="width: auto; height:150px" >
+                        </div>
+                        
+                        <div class="card-body">
+                        <h5>{{ Produto.categoria }}</h5> 
+                        <p>Owner: {{ Produto.user }}</p>
+                        <p>{{ Produto.descricao }}</p>
+                        <a class="btn btn-info" href="{% url 'titulo2' Produto.id %}">View {{ Produto.id }}</a>
+
+
+                        </div>
+                        
+                </div>
+                <br><br>
+
+        
+
+
+        {% endfor %}
+
+
+</div>
+
+                
+        
+
+        
+        <!--<p> a: {{ a }}</p>
+        <p> b: {{ b }}</p>
+        <p> c: {{ c }}</p>
+        <p> d: {{ d }}</p>
+        <p> e: {{ e }}</p>
+        <p> f: {{ f }}</p> <br>
+
+        </B> <li> a: {{ Produto.titulo }}</li>
+        <li> a: {{ Produto }}</li> -->
+
+{% endblock %}

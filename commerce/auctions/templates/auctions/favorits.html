@@ -1,0 +1,7 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div class = "container">
+        <h2>favorits</h2>
+        {% if user.is_authenticated and users_favorits_of_items%}
+            {% for produto in user_favorits_of_items %}

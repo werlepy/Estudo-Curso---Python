@@ -1,0 +1,31 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Add a new Listing</h2><br>
+    <div class="conteiner">
+        <div class="colum ">
+            <form action = "{% url 'f'%}" method="POST">
+                {% csrf_token %}
+
+            <label for="exampleFormControlInput1" class="form-label">Title:</label>     
+            <input name="titulo" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Exemple">
+        
+            <labe for="exampleFormControlInput1" class="form-label">Description</label>
+            <textarea name="descricao" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+
+            <label for="exampleFormControlInput1" class="form-label">Startig Bid</label>
+            <input name="lance1" type="number" class="form-control" id="exampleFormControlInput1" default="0" > 
+
+            <label for="exampleFormControlInput1" class="form-label">Image</label>
+            <input name="img" type="text" class="form-control" id="exampleFormControlInput1" > 
+        
+
+            <label for="exampleFormControlInput1" class="form-label">Categoria</label>
+            <input name="categoria"type="text" class="form-control" id="exampleFormControlInput1" >
+            
+            
+            <br><input type="submit" value="Submit"><br>
+            </form>
+        </div>
+    </div>
+{% endblock %}

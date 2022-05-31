@@ -1,0 +1,78 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Auction</h2>
+
+    {% if user == prinfo.user %}
+    <h1>You are the Owner of This Product</h1>
+    <a class="btn btn-info" id="encerrar" href="{% url 'encerrar' prinfo.id %}"> Close Auction </a>
+    {% else %}
+
+    <div class="card col-sm-4" style="width: 1000px;"> 
+        <div  class="card-header">
+            <h4> {{prinfo.titulo}} </h4>
+            <p>Product code: {{prinfo.id}}</p>
+            <h4> </h4>
+            <img class="card-img-top"  src="{{ prinfo.img }}" style="width: auto; height:150px" >
+        </div>
+        
+        <div class="card-body">
+            <h5>Category: {{prinfo.categoria}} </h5> 
+            <p>Description:{{prinfo.descricao}} </p>
+            <p>Owner:{{prinfo.user}} </p>
+            <p>Lance:{{prinfo.lance1}} </p>
+            <p>Make your Bet:</p>
+            <div class="form-group">
+                <form action="{% url 'n' prinfo.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="number" name="numb" placeholder="Write a number here">
+                    <button class="btn btn-primary" type="submit">Bid</button>
+                    <h3> {{ mensagem }}</h3>
+                    <h5>{{ novo_lance }} </h5>
+
+                    {% if is_produto_in_favorits %}
+                    <div style="padding-left:15px;">
+                        <a class="btn btn-primary" href="{% url 'favorits' prinfo.id %}">Remove from Watchlist</a>
+                    </div>
+
+                    {% else %}
+                    <div style="padding-left:15px;">
+                        <a class="btn btn-primary" href="{% url 'favorits' prinfo.id %}">Add to Watchlist</a>
+                    </div>
+                    {% endif %}
+
+                </form>
+            </div>
+        </div>
+    </div>
+        {% endif %}    
+
+    <div style="padding: 2%;">
+        <h2 style="margin-right: 20px">Insirt your Comment</h2>
+        <form action="{% url 'comentario' prinfo.id %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea class="form-control" type = "text" name="comentario" placeholder="Add Comment Here"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Add your Comment</button>
+        </form>
+
+
+
+        {% for i in comentario %}
+        <h4> Author:{{ comentario.escritor }}  Comment:{{ comentario.text }} </h4>
+        <h1>teste</h1>
+        {% endfor %}
+
+        {% for i in comentario %}
+        <h4> Author:{{ comentario.escritor }}  Comment:{{ comentario.text }} </h4>
+        <h1>teste</h1>
+        {% endfor %}
+
+
+
+
+
+
+{% endblock %}                    
+
